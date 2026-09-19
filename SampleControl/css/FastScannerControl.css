@@ -1,0 +1,76 @@
+/* 
+  1. TRẠNG THÁI MẶC ĐỊNH (BASE STATE)
+  Đồng bộ kích thước, font chữ và màu sắc với chuẩn Unified Interface 
+*/
+.fast-scanner-input {
+    /* Khung bao */
+    width: 100%;
+    height: 32px;
+    box-sizing: border-box;
+    padding: 0 8px;
+
+    /* Typography chuẩn Microsoft */
+    font-family: "Segoe UI", "Segoe UI Web (West European)", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+    font-size: 14px;
+    color: #323130;
+    /* Fluent UI: Neutral Primary */
+
+    /* Giao diện khối */
+    background-color: #ffffff;
+    border: 1px solid #8a8886;
+    /* Fluent UI: Neutral Secondary */
+    border-radius: 2px;
+
+    /* Hiệu ứng chuyển mượt mà (rất nhẹ để không tốn CPU) */
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+/* 
+  2. TRẠNG THÁI HOVER (CHUỘT LƯỚT QUA)
+  Chỉ áp dụng khi ô input KHÔNG bị khóa
+*/
+.fast-scanner-input:hover:not(:disabled) {
+    border-color: #323130;
+    /* Đậm màu viền lên khi di chuột */
+}
+
+/* 
+  3. TRẠNG THÁI FOCUS (ĐANG NHẬP LIỆU/QUÉT MÃ)
+*/
+.fast-scanner-input:focus {
+    /* Xóa bỏ viền xanh mặc định xấu xí của trình duyệt Chrome/Edge */
+    outline: none;
+
+    border-color: #0078d4;
+    /* Fluent UI: Brand Blue */
+
+    /* KỸ THUẬT QUAN TRỌNG: 
+       Dùng box-shadow thay vì tăng border thành 2px. 
+       Việc này giúp ô input giữ nguyên kích thước, không đẩy các field khác 
+       xê dịch (tránh lỗi Layout Shift gây giật màn hình). 
+    */
+    box-shadow: 0 0 0 1px #0078d4;
+}
+
+/* 
+  4. TRẠNG THÁI READ-ONLY / DISABLED (KHOÁ FIELD)
+  Đồng bộ khi Form bị khóa hoặc Business Rule vô hiệu hóa trường này
+*/
+.fast-scanner-input:disabled {
+    background-color: #f3f2f1;
+    /* Fluent UI: Neutral Lighter */
+    color: #a19f9d;
+    /* Chữ xám chìm */
+    border-color: #edebe9;
+    /* Viền tiệp màu nền */
+    cursor: not-allowed;
+}
+
+/* 
+  5. TÙY CHỈNH PLACEHOLDER (CHỮ MỜ GỢI Ý)
+*/
+.fast-scanner-input::placeholder {
+    color: #605e5c;
+    font-style: italic;
+    /* In nghiêng nhẹ để phân biệt với dữ liệu thật */
+}

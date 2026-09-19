@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<manifest>
+  <control namespace="OptimizeDev" constructor="FastScannerControl" version="1.0.0" display-name-key="Fast Scanner Control" description-key="Control tối ưu nhập liệu siêu tốc cho máy scan phần cứng" control-type="standard">
+    
+    <!-- 1. KHAI BÁO NHÓM KIỂU DỮ LIỆU (TYPE GROUP) -->
+    <!-- Cho phép PCF này có thể được gán vào nhiều loại cột khác nhau trên Form -->
+    <type-group name="TextAndNumberTypes">
+      <type>SingleLine.Text</type>
+      <type>SingleLine.Email</type>
+      <type>SingleLine.Phone</type>
+      <type>SingleLine.Ticker</type>
+      <type>Whole.None</type>
+      <type>Decimal</type>
+    </type-group>
+
+    <!-- 2. KHAI BÁO THUỘC TÍNH (PROPERTY) -->
+    <!-- Ràng buộc 2 chiều (bound) với Dataverse, sử dụng nhóm kiểu dữ liệu đã định nghĩa ở trên -->
+    <property name="inputValue" 
+              display-name-key="Giá trị nhập liệu" 
+              description-key="Thuộc tính liên kết với trường dữ liệu trên Form" 
+              usage="bound" 
+              required="true" 
+              of-type-group="TextAndNumberTypes" />
+
+    <!-- 3. KHAI BÁO TÀI NGUYÊN (RESOURCES) -->
+    <resources>
+      <!-- Khai báo file logic chính (Vanilla TypeScript) -->
+      <code path="index.ts" order="1"/>
+      
+      <!-- Khai báo file CSS để giả lập giao diện UI cho ô input -->
+      <!-- Lưu ý: Bạn cần tạo thư mục 'css' và file 'FastScannerControl.css' trong dự án -->
+      <css path="css/FastScannerControl.css" order="1" />
+    </resources>
+    
+  </control>
+</manifest>
